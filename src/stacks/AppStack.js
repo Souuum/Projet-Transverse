@@ -3,7 +3,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import User from "../screens/User.js";
-import Quizz from "../screens/Quiz.js";
+import Quizz from "../screens/Quizz.js";
 import Setting from "../screens/Settings.js";
 
 
