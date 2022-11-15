@@ -3,7 +3,7 @@ import { GREEN, LIGHTGRAY } from "./config.js";
 
 const NavLinkContainer = styled.Text`
   color: ${GREEN};
-  font-family: "FredokaOne";
+  font-family: "AzeretMono";
   font-size: 16px;
 `;
 const NavLink = ({ children, handlePress }) => {

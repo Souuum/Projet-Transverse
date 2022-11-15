@@ -9,7 +9,7 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import SafeContainer from "../components/SafeContainer";
-import { RED, ICON, STYLE } from "../components/config.js";
+import { COMPLEMENTARY, ICON, STYLE } from "../components/config.js";
 
 import { useAuth } from "../contexts/Auth";
 
@@ -75,7 +75,7 @@ const Login = ({ navigation }) => {
             width: "70%",
             textAlign: "center",
             marginBottom: 20,
-            color: RED,
+            color: COMPLEMENTARY,
           }}
         >
           {error}

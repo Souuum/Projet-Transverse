@@ -6,7 +6,7 @@ import Input from "../components/Input";
 import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import SafeContainer from "../components/SafeContainer";
-import { STYLE, RED, GREEN } from "../components/config.js";
+import { STYLE, COMPLEMENTARY, PRIMARY } from "../components/config.js";
 import { StyleSheet, Text } from "react-native";
 import NavLink from "../components/NavLink";
 import FredokaText from "../components/FredokaText";
@@ -141,7 +141,7 @@ const Signup = ({ navigation }) => {
                             additionnalStyle={{
                                 textAlign: "center",
                                 marginTop: 5,
-                                color: RED,
+                                color: COMPLEMENTARY,
                             }}
                         >
                             {passwordError}

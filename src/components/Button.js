@@ -1,9 +1,9 @@
 import styled from "styled-components/native";
 import { View, TouchableOpacity } from "react-native";
-import { GREEN, LIGHTGRAY } from "./config.js";
+import { PRIMARY, ANALOGOUS1 } from "./config.js";
 
 const ButtonContainer = styled.View`
-  background-color: ${LIGHTGRAY};
+  background-color: ${ANALOGOUS1};
   background-color: ${(props) => props.bgColor};
   padding: 15px 25px;
   border-radius: 20px;
@@ -13,14 +13,14 @@ const ButtonContainer = styled.View`
 
 const ButtonText = styled.Text`
   color: white;
-  font-family: "FredokaOne";
+  font-family: "AzeretMono";
   font-size: 16px;
 `;
 
 const Button = ({
   children,
   handlePress,
-  bgColor = GREEN,
+  bgColor = PRIMARY,
   additionnalStyle,
 }) => {
   return (

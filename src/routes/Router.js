@@ -10,6 +10,7 @@ import UserAuthContext from "../contexts/Auth";
 import * as SplashScreen from "expo-splash-screen";
 import { Roboto_400Regular } from "@expo-google-fonts/roboto";
 import { FredokaOne_400Regular } from "@expo-google-fonts/fredoka-one";
+import { AzeretMono_300Light } from "@expo-google-fonts/azeret-mono";
 import * as Font from "expo-font";
 
 const Router = () => {
@@ -23,6 +24,7 @@ const Router = () => {
                 await Font.loadAsync({
                     Roboto: Roboto_400Regular,
                     FredokaOne: FredokaOne_400Regular,
+                    AzeretMono: AzeretMono_300Light
                 });
             } catch (e) {
                 console.warn(e);
