@@ -54,5 +54,5 @@ buck-out/
 .expo/
 web-build/
 dist/
-
+node_modules
 host.js
