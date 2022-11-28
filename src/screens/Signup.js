@@ -9,7 +9,7 @@ import SafeContainer from "../components/SafeContainer";
 import { STYLE, COMPLEMENTARY, PRIMARY } from "../components/config.js";
 import { StyleSheet, Text } from "react-native";
 import NavLink from "../components/NavLink";
-import FredokaText from "../components/FredokaText";
+import AzeretText from "../components/AzeretText";
 import { useAuth } from "../contexts/Auth";
 import { Slider } from "react-native-range-slider-expo";
 import { popAlert } from "../components/Alert";
@@ -22,17 +22,6 @@ const InputContainer = styled.View`
     margin-top: 15px;
 `;
 
-const FormContainer = styled.View`
-    margin-bottom: 20px;
-`;
-
-const FormInputContainer = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 15px;
-`;
-
 const ScrollViewContainer = styled.ScrollView`
     width: 80%;
     margin: 10px 0;
@@ -40,7 +29,7 @@ const ScrollViewContainer = styled.ScrollView`
 
 const Unit = styled.Text`
     font-size: 12px;
-    font-family: "FredokaOne";
+    font-family: "AzeretOne";
     width: 60px;
     text-align: center;
 `;
@@ -52,6 +41,7 @@ const Signup = ({ navigation }) => {
     const [name, setName] = useState("");
     const [firstname, setFirstName] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [confirm, setConfirm] = useState("");
     const [schooyear, setSchoolYear] = useState("");
 
@@ -62,6 +52,7 @@ const Signup = ({ navigation }) => {
     const handleSignup = async (credentials) => {
         if (passwordValidation()) {
             setPasswordError("");
+            console.log(credentials);
             const _check = await auth.signUp(credentials);
             if (_check && _check.response) {
                 popAlert("Inscription", "Compte crée !");
@@ -154,7 +145,7 @@ const Signup = ({ navigation }) => {
                         </InputLabel>
                         <Input
                             placeholder={"année d'étude"}
-                            onChangeText={(e) => setPassword(e)}
+                            onChangeText={(e) => setSchoolYear(e)}
                             secureTextEntry={true}
                         ></Input>
                     </InputContainer>
@@ -163,16 +154,14 @@ const Signup = ({ navigation }) => {
                 <Button
                     handlePress={() =>
                         handleSignup({
+                            name: name,
+                            firstname: firstname,
                             email: email,
-                            username: username,
                             password: password,
-                            age: age,
-                            height: height,
-                            weight: weight,
-                            sportsPerWeek: sportsPerWeek,
-                            pricePerMeal: pricePerMeal,
-                            nutrRatio: nutrRatio,
-                            budgRatio: budgRatio,
+                            schooyear: schooyear
+
+
+
                         })
                     }
                 >
@@ -180,7 +169,7 @@ const Signup = ({ navigation }) => {
                 </Button>
             </ScrollViewContainer>
             <Text style={{ marginBottom: 10 }}>
-                <FredokaText>{"Vous avez déja un compte ?"} </FredokaText>{" "}
+                <AzeretText>{"Vous avez déja un compte ?"} </AzeretText>{" "}
                 <NavLink handlePress={() => navigation.navigate("Login")}>
                     {"Se connecter"}
                 </NavLink>

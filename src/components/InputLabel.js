@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { GREEN } from "./config.js";
 
 const InputLabelContainer = styled.Text`
-  font-family: "FredokaOne";
+  font-family: "AzeretMono";
   font-size: 20px;
   color: ${GREEN};
 `;

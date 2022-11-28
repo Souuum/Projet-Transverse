@@ -1,7 +1,7 @@
 import { useState, useCallback, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Image, Text } from "react-native";
-import FredokaText from "../components/FredokaText";
+import AzeretText from "../components/AzeretText";
 import styled from "styled-components/native";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -15,7 +15,7 @@ import { useAuth } from "../contexts/Auth";
 
 const LoginContainer = styled.View`
   width: 60%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const InputContainer = styled.View`
@@ -95,7 +95,7 @@ const Login = ({ navigation }) => {
           marginBottom: 10,
         }}
       >
-        <FredokaText>{"Pas encore inscrit ?"} </FredokaText>{" "}
+        <AzeretText>{"Pas encore inscrit ?"} </AzeretText>{" "}
         <NavLink handlePress={() => navigation.navigate("Signup")}>
           {"S'inscrire"}
         </NavLink>

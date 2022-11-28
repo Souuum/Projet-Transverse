@@ -1,9 +1,8 @@
 import styled from "styled-components/native";
 import { View, TouchableOpacity } from "react-native";
-import { PRIMARY, ANALOGOUS1 } from "./config.js";
+import { PRIMARY, ANALOGOUS1, } from "./config.js";
 
 const ButtonContainer = styled.View`
-  background-color: ${ANALOGOUS1};
   background-color: ${(props) => props.bgColor};
   padding: 15px 25px;
   border-radius: 20px;

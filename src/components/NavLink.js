@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
-import { GREEN, LIGHTGRAY } from "./config.js";
+import { PRIMARY, ANALOGOUS1, ANALOGOUS2 } from "./config.js";
 
 const NavLinkContainer = styled.Text`
-  color: ${GREEN};
+  color: ${PRIMARY};
   font-family: "AzeretMono";
   font-size: 16px;
 `;
