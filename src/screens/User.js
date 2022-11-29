@@ -9,7 +9,7 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import UserContainer from "../components/UserContainer";
-import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2 } from "../components/config.js";
+import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, ACCENT } from "../components/config.js";
 
 import { useAuth, signOut } from "../contexts/Auth";
 import Tile from "../components/Tile";
@@ -38,8 +38,9 @@ const User = ({ navigation }) => {
                         if (json === null || typeof (json) == undefined || json.length == 0) {
                             authData.questionAnswered = null;
                         } else {
-                            console.log(json);
-                            console.log(json[0][0].n)
+                            // console.log(json);
+                            // console.log(json[0][0].n)
+                            // console.log('nb questions answered');
                             const nbQuestionAnswered = json[0][0].n;
                             authData.nbQuestionAnswered = json;
 
@@ -56,6 +57,7 @@ const User = ({ navigation }) => {
         prepare();
 
         if (tileNbQuestionAnswered != null) {
+            console.log('IM IN');
             CreateTile(tileNbQuestionAnswered);
         }
         console.log(tileNbQuestionAnswered);
@@ -81,7 +83,7 @@ const User = ({ navigation }) => {
             </Title>
             <CreateTile data={tileNbQuestionAnswered}></CreateTile>
             <CreateTile bgColor={ANALOGOUS2} data={"test"}></CreateTile>
-            <CreateTile bgColor={COMPLEMENTARY} data={"prout"}></CreateTile>
+            <CreateTile bgColor={ACCENT} data={"prout"}></CreateTile>
             <CreateTile bgColor={TRIADIC} data={"test"}></CreateTile>
 
         </UserContainer >

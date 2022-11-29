@@ -4,9 +4,9 @@ const Container = styled.SafeAreaView`
   flex: 1;
   position: relative;
   background-color: #ffffff;
-  marginLeft: 10;
+  padding: 4%;
 `;
-const SafeContainer = ({ children }) => {
+const UserContainer = ({ children }) => {
     return (
         <Container style={{ paddingTop: Platform.OS === "android" ? 25 : 0 }}>
             {children}
@@ -14,4 +14,4 @@ const SafeContainer = ({ children }) => {
     );
 };
 
-export default SafeContainer;
+export default UserContainer;

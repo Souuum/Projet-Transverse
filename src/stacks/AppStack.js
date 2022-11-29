@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { PRIMARY, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2 } from "../components/config.js";
+import { PRIMARY, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, TRIADIC, ACCENT } from "../components/config.js";
 import User from "../screens/User.js";
 import Quizz from "../screens/Quizz.js";
 import Setting from "../screens/Settings.js";
@@ -37,8 +37,8 @@ const AppStack = () => {
                     borderWidth: 0,
                     backgroundColor: PRIMARY,
                 },
-                tabBarActiveTintColor: { PRIMARY },
-                tabBarInactiveTintColor: { ANALOGOUS1 },
+                tabBarActiveTintColor: ACCENT,
+                tabBarInactiveTintColor: TRIADIC,
                 headerShown: false,
                 tabBarShowLabel: false,
             })}
