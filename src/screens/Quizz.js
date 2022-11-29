@@ -9,49 +9,67 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import SafeContainer from "../components/SafeContainer";
-import { RED, ICON, STYLE } from "../components/config.js";
 import { host } from "../config/host"
 import { useAuth } from "../contexts/Auth";
+import QuizzSwiper from "../components/QuizzSwiper";
 
 const Quizz = ({ navigation }) => {
     const { authData } = useAuth();
-    const [questions, setQuestion] = useState(null);
+    const [questions, setQuestions] = useState(null);
+    const [cards, setCards] = useState(null);
 
     useEffect(() => {
         async function prepare() {
             try {
-                await fetch(`http://${host}:3000/users_questions_history/user/${authData.id}/not-answered`, {
+                const res = await fetch(`http://${host}:3000/users_questions_history/user/${authData.id}/not-answered`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                     }
-                }).then((response) => response.json())
-                    .then(json => {
-                        if (json === null || typeof (json) == undefined || json.length == 0) {
-                            authData.questions = null;
-                        } else {
-                            console.log(json);
-                            console.log(json[0])
-                            authData.questions = json;
-                        }
-                    });
+                });
+                const data = await res.json().then((json) => {
+                    const _cards = json;
+                    setCards(_cards[0]);
+                    console.log(_cards[0]);
+                });
+
             } catch (e) {
                 console.warn(e);
             }
         }
-        prepare();
+        prepare()
+        console.log(cards);
+
 
         return () => {
 
         }
     }, [])
 
+    if (!cards) {
+        return null;
+    }
+
+    const CreateQuizzSwiper = (cards) => {
+        if (cards == null || typeof (props) == undefined) {
+            return null
+        }
+        else {
+            return (
+                <QuizzSwiper
+                    cards={cards}
+
+                />
+            )
+        }
+    }
 
     return (
         <SafeContainer>
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
                 {"Quizz"}
             </Title>
+            <CreateQuizzSwiper cards={cards}></CreateQuizzSwiper>
         </SafeContainer>
     )
 }
