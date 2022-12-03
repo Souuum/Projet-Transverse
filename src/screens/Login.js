@@ -9,7 +9,7 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import SafeContainer from "../components/SafeContainer";
-import { COMPLEMENTARY, ICON, STYLE } from "../components/config.js";
+import { COMPLEMENTARY, ICON, STYLE, VOMIT } from "../components/config.js";
 
 import { useAuth } from "../contexts/Auth";
 
@@ -38,7 +38,7 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeContainer>
-      <Image style={styles.mediumIcon} source={ICON} />
+      <Image style={styles.mediumIcon} source={VOMIT} />
 
       <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
         {"Connexion"}
