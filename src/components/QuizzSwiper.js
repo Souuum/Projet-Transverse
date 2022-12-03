@@ -40,7 +40,7 @@ const Card = (props) => {
 
 
 
-const QuizzSwiper = (ref, data) => {
+const QuizzSwiper = (data) => {
 
     const _data = Object.keys(data.cards).map(key => ({ [key]: data.cards[key] }));
     // console.log(_data[0].cards);
@@ -52,7 +52,6 @@ const QuizzSwiper = (ref, data) => {
     return (
         <SwipeContainer>
             <Swiper
-                ref={ref}
                 backgroundColor={'transparent'}
                 cards={_data[0].cards}
                 cardIndex={index}

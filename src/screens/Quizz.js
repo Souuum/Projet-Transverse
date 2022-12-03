@@ -12,6 +12,11 @@ import SafeContainer from "../components/SafeContainer";
 import { host } from "../config/host"
 import { useAuth } from "../contexts/Auth";
 import QuizzSwiper from "../components/QuizzSwiper";
+import QuizzButtonStackBar from "../components/QuizzButtonStackBar";
+import QuizzButton from "../components/QuizzButton";
+import { COLD, GRINNING, HEARTEYES, VOMIT } from "../components/config";
+import RoundedBackGround from "../components/RoundedBackGround";
+
 
 const Quizz = ({ navigation }) => {
     const { authData } = useAuth();
@@ -70,6 +75,12 @@ const Quizz = ({ navigation }) => {
                 {"Quizz"}
             </Title>
             <CreateQuizzSwiper cards={cards}></CreateQuizzSwiper>
+            <QuizzButtonStackBar>
+                <QuizzButton img={VOMIT}></QuizzButton>
+                <QuizzButton img={COLD}></QuizzButton>
+                <QuizzButton img={GRINNING}></QuizzButton>
+                <QuizzButton img={HEARTEYES}></QuizzButton>
+            </QuizzButtonStackBar>
         </SafeContainer>
     )
 }
