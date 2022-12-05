@@ -9,7 +9,7 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import UserContainer from "../components/UserContainer";
-import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, ACCENT } from "../components/config.js";
+import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, ACCENT, OFFWHITE } from "../components/config.js";
 
 import { useAuth, signOut } from "../contexts/Auth";
 import Tile from "../components/Tile";
@@ -70,7 +70,7 @@ const User = ({ navigation }) => {
         if (props == null || typeof (props) == undefined) return null
         else return (
             <Tile bgColor={props.bgColor}>
-                <AzeretText>{props.data}</AzeretText>
+                <AzeretText textColor={props.textColor}>{props.data}</AzeretText>
             </Tile>
         )
 
@@ -81,10 +81,10 @@ const User = ({ navigation }) => {
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 0 }}>
                 {"Bonjour " + authData.firstname}
             </Title>
-            <CreateTile data={tileNbQuestionAnswered}></CreateTile>
-            <CreateTile bgColor={ANALOGOUS2} data={"test"}></CreateTile>
-            <CreateTile bgColor={ACCENT} data={"prout"}></CreateTile>
-            <CreateTile bgColor={TRIADIC} data={"test"}></CreateTile>
+            <CreateTile data={tileNbQuestionAnswered} textColor={OFFWHITE}></CreateTile>
+            <CreateTile bgColor={ANALOGOUS2} data={"Example 1"}></CreateTile>
+            <CreateTile bgColor={ACCENT} data={"Example 2"}></CreateTile>
+            <CreateTile bgColor={TRIADIC} data={"Example 3"}></CreateTile>
 
         </UserContainer >
     )

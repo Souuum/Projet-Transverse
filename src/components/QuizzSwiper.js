@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import styled from "styled-components/native";
-import { PRIMARY, ANALOGOUS1, COMPLEMENTARY, ANALOGOUS2, TRIADIC } from "./config.js";
+import { PRIMARY, ANALOGOUS1, COMPLEMENTARY, ANALOGOUS2, TRIADIC, OFFWHITE } from "./config.js";
 import { useState } from "react";
 import Swiper from "react-native-deck-swiper";
 import FredokaText from "./FredokaText.js";
@@ -32,8 +32,8 @@ border-radius: 20px;
 const Card = (props) => {
     // console.log(props.card);
     return (
-        <CardContainer bgColor={TRIADIC}>
-            <FredokaText>{props.card.description}</FredokaText>
+        <CardContainer bgColor={PRIMARY}>
+            <FredokaText textColor={OFFWHITE}>{props.card.description}</FredokaText>
         </CardContainer>)
 
 };

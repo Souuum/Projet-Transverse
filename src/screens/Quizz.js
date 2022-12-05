@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from "react";
+import { forwardRef, createRef, useRef, useEffect, useState, useCallback, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Image, Text } from "react-native";
 import FredokaText from "../components/FredokaText";
@@ -22,6 +22,7 @@ const Quizz = ({ navigation }) => {
     const { authData } = useAuth();
     const [questions, setQuestions] = useState(null);
     const [cards, setCards] = useState(null);
+
 
     useEffect(() => {
         async function prepare() {
@@ -55,18 +56,27 @@ const Quizz = ({ navigation }) => {
         return null;
     }
 
-    const CreateQuizzSwiper = (cards) => {
+
+    const CreateQuizzSwiper = forwardRef((cards, ref) => {
         if (cards == null || typeof (props) == undefined) {
             return null
         }
         else {
             return (
                 <QuizzSwiper
+                    ref={ref}
                     cards={cards}
 
                 />
             )
         }
+    });
+
+    const swipeRef = createRef();
+
+    const buttonChoice = () => {
+        console.log('prout')
+        swipeRef.current.swipeLeft();
     }
 
     return (
@@ -74,10 +84,16 @@ const Quizz = ({ navigation }) => {
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
                 {"Quizz"}
             </Title>
-            <CreateQuizzSwiper cards={cards}></CreateQuizzSwiper>
+            <CreateQuizzSwiper
+                ref={swipeRef}
+                cards={cards}
+            ></CreateQuizzSwiper>
             <QuizzButtonStackBar>
-                <QuizzButton img={VOMIT}></QuizzButton>
-                <QuizzButton img={COLD}></QuizzButton>
+                <QuizzButton
+                    img={VOMIT}></QuizzButton>
+                <QuizzButton
+                    img={COLD}
+                    handlePress={() => { swipeRef.current.swipeLeft() }}></QuizzButton>
                 <QuizzButton img={GRINNING}></QuizzButton>
                 <QuizzButton img={HEARTEYES}></QuizzButton>
             </QuizzButtonStackBar>

@@ -26,7 +26,7 @@ const Settings = ({ navigation }) => {
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
                 {"Setting"}
             </Title>
-            <Button bgColor={ANALOGOUS2} handlePress={() => handleSignout()}>{""}</Button>
+            <Button bgColor={ANALOGOUS2} handlePress={() => handleSignout()}>{"log out"}</Button>
 
 
         </SafeContainer>

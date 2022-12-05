@@ -1,3 +1,5 @@
+import SafeContainer from "./SafeContainer";
+
 export const PRIMARY = "#3900C0";
 export const COMPLEMENTARY = "#86C000";
 export const ANALOGOUS1 = "#0026C0";
@@ -11,14 +13,17 @@ export const COLD = require("../../assets/cold.png");
 export const VOMIT = require("../../assets/vomit.png");
 export const GRINNING = require("../../assets/grinning.png");
 export const HEARTEYES = require("../../assets/heart-eyes.png");
+export const EFREI = require("../../assets/Logo_Efrei.jpg")
 
 export const STYLE = {
   bigIcon: {
+    resizeMod: "contain",
     width: 252,
     height: 252,
   },
   mediumIcon: {
-    width: 167,
+    resizeMod: "contain",
+    width: 280,
     height: 167,
   },
   smallIcon: {
