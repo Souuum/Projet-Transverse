@@ -4,6 +4,7 @@ import { PRIMARY, ANALOGOUS1, COMPLEMENTARY, ANALOGOUS2, TRIADIC, OFFWHITE } fro
 import { useState } from "react";
 import Swiper from "react-native-deck-swiper";
 import FredokaText from "./FredokaText.js";
+import { forwardRef } from "react";
 
 
 const CardContainer = styled.View`
@@ -40,7 +41,7 @@ const Card = (props) => {
 
 
 
-const QuizzSwiper = (data) => {
+const QuizzSwiper = forwardRef((data, ref) => {
 
     const _data = Object.keys(data.cards).map(key => ({ [key]: data.cards[key] }));
     // console.log(_data[0].cards);
@@ -52,6 +53,7 @@ const QuizzSwiper = (data) => {
     return (
         <SwipeContainer>
             <Swiper
+                ref={ref}
                 backgroundColor={'transparent'}
                 cards={_data[0].cards}
                 cardIndex={index}
@@ -66,6 +68,6 @@ const QuizzSwiper = (data) => {
         </SwipeContainer>
 
     )
-}
+});
 
 export default QuizzSwiper;
