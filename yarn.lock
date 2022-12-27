@@ -9454,6 +9454,11 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   "version" "0.70.3"
 
+"react-native-popup-confirm-toast@^2.2.7":
+  "integrity" "sha512-yy5U20sMW4a/ryRCsGb3RBT5+1c5DoIJduBk0NCUlLYIGen0JQ6AHlKk0QoprWezGKEKZuXhOnT3iq+mY1IrGw=="
+  "resolved" "https://registry.npmjs.org/react-native-popup-confirm-toast/-/react-native-popup-confirm-toast-2.2.7.tgz"
+  "version" "2.2.7"
+
 "react-native-range-slider-expo@^1.4.3":
   "integrity" "sha512-EAIXfuCxJYffi6yqOcmCMWzvPNRSJ7zgDhQtVXXe2fokYaXVLG1uq2jM+cpTStMusIIGIo9HGZAja94N+rnNyg=="
   "resolved" "https://registry.npmjs.org/react-native-range-slider-expo/-/react-native-range-slider-expo-1.4.3.tgz"

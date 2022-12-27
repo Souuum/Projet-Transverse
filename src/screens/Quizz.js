@@ -66,7 +66,6 @@ const Quizz = ({ navigation }) => {
                 const _cards = json;
                 setCards(_cards[0]);
                 console.log(_cards[0]);
-                setSwipedAll(swipedAll(swipeRef));
             });
 
         } catch (e) {
