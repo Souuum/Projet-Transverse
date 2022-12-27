@@ -12,6 +12,7 @@ import NavLink from "../components/NavLink";
 import SafeContainer from "../components/SafeContainer";
 import { host } from "../config/host"
 import { useAuth } from "../contexts/Auth";
+// import QuizzSwiper from "../components/QuizzSwiper";
 import Swiper from "react-native-deck-swiper";
 
 import QuizzButtonStackBar from "../components/QuizzButtonStackBar";
