@@ -49,6 +49,10 @@ const User = ({ navigation }) => {
                                 : `${nbQuestionAnswered} questions répondues, encore ${25 - nbQuestionAnswered} pour avoir une idée de ce qui te correspond`;
                             setTileNbQuestionAnswered(s);
                         }
+
+                        if (nbQuestionAnswered > 24) {
+                            const result = "Voici votre graphe de tendance";
+                        }
                     });
             } catch (e) {
                 console.warn(e);
@@ -82,9 +86,9 @@ const User = ({ navigation }) => {
                 {"Bonjour " + authData.firstname}
             </Title>
             <CreateTile data={tileNbQuestionAnswered} textColor={OFFWHITE}></CreateTile>
-            <CreateTile bgColor={ANALOGOUS2} data={"Example 1"}></CreateTile>
+            {/* <CreateTile bgColor={ANALOGOUS2} data={"Example 1"}></CreateTile>
             <CreateTile bgColor={ACCENT} data={"Example 2"}></CreateTile>
-            <CreateTile bgColor={TRIADIC} data={"Example 3"}></CreateTile>
+            <CreateTile bgColor={TRIADIC} data={"Example 3"}></CreateTile> */}
 
         </UserContainer >
     )

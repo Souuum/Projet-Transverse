@@ -33,6 +33,21 @@ display: flex;
 flexDirection: column;
 justifyContent: space-between;
 
+
+`;
+
+const UserInfoContainer = styled.View`
+background-color: ${(props) => props.bgColor};
+padding: 15px 25px;
+width: 95%;
+height: 10%;
+border-radius: 20px;
+display: flex;
+flexDirection: column;
+justifyContent: space-between;
+position: absolute;
+top : 10px;
+
 `;
 
 const SwipeContainer = styled.View`
@@ -53,7 +68,7 @@ const Quizz = ({ navigation }) => {
 
     const { authData } = useAuth();
     const [cards, setCards] = useState(null);
-
+    const [nbQuestionAnswered, setNbQuestionAnswered] = useState(authData.nbQuestionAnswered[0][0].n);
     async function prepare() {
         try {
             const res = await fetch(`http://${host}:3000/users_questions_history/user/${authData.id}/not-answered`, {
@@ -84,11 +99,10 @@ const Quizz = ({ navigation }) => {
         prepare()
         console.log(cards);
 
-
         return () => {
 
         }
-    }, [_refresh])
+    }, [])
 
 
     useEffect(() => {
@@ -101,6 +115,8 @@ const Quizz = ({ navigation }) => {
     }, [_swipedAll]);
 
     if (!cards) {
+        console.log('no cards');
+
         return null;
     }
 
@@ -118,6 +134,13 @@ const Quizz = ({ navigation }) => {
 
     const QuizzSwiper = forwardRef((data, ref) => {
 
+        if (cards.length == 0) {
+            console.log("vide")
+            return (
+                <AzeretText> Vous avez répondu à toutes les questions</AzeretText>
+            )
+        }
+
         const _data = Object.keys(data.cards).map(key => ({ [key]: data.cards[key] }));
         // console.log(_data[0].cards);
         const [index, setIndex] = useState(0);
@@ -127,7 +150,6 @@ const Quizz = ({ navigation }) => {
             console.log(index);
             console.log(ref.current.state);
         };
-
 
         return (
             <SwipeContainer>
@@ -161,6 +183,12 @@ const Quizz = ({ navigation }) => {
 
         if (cards == null || typeof (props) == undefined) {
             return null
+        }
+        if (cards.length == 0) {
+            console.log("vide")
+            return (
+                <AzeretText> Vous avez répondu à toutes les questions</AzeretText>
+            )
         }
         else {
             return (
@@ -211,6 +239,7 @@ const Quizz = ({ navigation }) => {
                 idcard: cards[swipeRef.current.state.firstCardIndex].id,
                 score: value
             });
+            authData.nbQuestionAnswered[0][0].n += 1;
             //Animation handling
             var swipei = Math.floor(Math.random() * 4);
 
@@ -234,6 +263,9 @@ const Quizz = ({ navigation }) => {
 
     return (
         <SafeContainer>
+            <UserInfoContainer bgColor={PRIMARY}>
+                <FredokaText textColor={OFFWHITE}>Tu as répondu à {nbQuestionAnswered} questions</FredokaText>
+            </UserInfoContainer>
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
                 {"Quizz"}
             </Title>
