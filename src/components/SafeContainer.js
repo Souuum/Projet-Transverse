@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { Platform } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const Container = styled.SafeAreaView`
   flex: 1;
   position: relative;
@@ -9,9 +10,10 @@ const Container = styled.SafeAreaView`
 `;
 const SafeContainer = ({ children }) => {
   return (
-    <Container style={{ paddingTop: Platform.OS === "android" ? 25 : 0 }}>
+    <Container style={{ paddingTop: Platform.OS === "android" ? 25 : 50 }}>
       {children}
     </Container>
+
   );
 };
 

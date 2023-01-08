@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Image, Text } from "react-native";
+import { StyleSheet, Image, Text, Dimensions } from "react-native";
 import AzeretText from "../components/FredokaText";
 import styled from "styled-components/native";
 import Button from "../components/Button";
@@ -9,22 +9,38 @@ import InputLabel from "../components/InputLabel";
 import Title from "../components/Title";
 import NavLink from "../components/NavLink";
 import UserContainer from "../components/UserContainer";
-import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, ACCENT, OFFWHITE } from "../components/config.js";
-
+import { TRIADIC, COMPLEMENTARY, ANALOGOUS1, ANALOGOUS2, ACCENT, OFFWHITE, PRIMARY } from "../components/config.js";
 import { useAuth, signOut } from "../contexts/Auth";
 import Tile from "../components/Tile";
 import { host } from "../config/host";
 import { View } from "react-native";
-
-
+import { ProgressChart } from "react-native-chart-kit";
 
 const User = ({ navigation }) => {
-    const { authData, signOut } = useAuth();
+    const screenWidth = Dimensions.get("window").width;
 
+    const { authData, signOut } = useAuth();
     const [nbQuestionAnswered, setNbQuestionAnswered] = useState(null);
     const [tileNbQuestionAnswered, setTileNbQuestionAnswered] = useState(null);
     const [results, setResults] = useState(null);
+    const [progressData, setProgressData] = useState(null);
 
+    const data = {
+        labels: ["Cyber", "Software", "Data"],
+        data: [0.6, 0.9, 0.2]
+    };
+    const chartConfig = {
+        backgroundGradientFrom: PRIMARY,
+        backgroundGradientFromOpacity: 1,
+        backgroundGradientTo: PRIMARY,
+        backgroundGradientToOpacity: 1,
+        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+        strokeWidth: 2, // optional, default 3
+        barPercentage: 0.5,
+        propsForLabels: {
+            fontSize: "6",
+        }
+    };
 
     useEffect(() => {
         async function getResults() {
@@ -40,8 +56,19 @@ const User = ({ navigation }) => {
                             authData.results = null;
                         } else {
                             const _results = json[0];
-                            authData.results = _results;
+                            const _label = []
+                            const _data = []
+                            _results.forEach(r => {
+                                _label.push(r.category)
+                                _data.push(r.results / 100)
+                            });
+                            console.log(_label);
+                            const _progress = {
+                                labels: _label,
+                                data: _data
+                            }
                             setResults(_results);
+                            setProgressData(_progress);
                             console.log(_results);
                         }
                     })
@@ -69,7 +96,8 @@ const User = ({ navigation }) => {
 
                             setNbQuestionAnswered(nbQuestionAnswered);
                             const s = nbQuestionAnswered === null || nbQuestionAnswered == 0 ? " Vous n'avez répondu à aucune question, Commencez votre quizz !"
-                                : `${nbQuestionAnswered} questions répondues, encore ${25 - nbQuestionAnswered} pour avoir une idée de ce qui te correspond`;
+                                : nbQuestionAnswered < 25 ? `${nbQuestionAnswered} questions répondues, encore ${25 - nbQuestionAnswered} pour avoir une idée de ce qui te correspond`
+                                    : `${nbQuestionAnswered} questions répondues, le graphique en dessous te donne une idée des majeures qui te correspondent le plus `;
                             setTileNbQuestionAnswered(s);
                         }
                     });
@@ -103,12 +131,42 @@ const User = ({ navigation }) => {
 
     }
 
+    if (nbQuestionAnswered < 25 || progressData == null) {
+        return (<UserContainer>
+            <Title fontSize={"25px"} additionnalStyle={{ marginTop: 0 }}>
+                {"Bonjour " + authData.firstname}
+            </Title>
+            <CreateTile data={tileNbQuestionAnswered} textColor={OFFWHITE}></CreateTile>
+
+            {/* <CreateTile bgColor={ANALOGOUS2} data={"Example 1"}></CreateTile>
+            <CreateTile bgColor={ACCENT} data={"Example 2"}></CreateTile>
+            <CreateTile bgColor={TRIADIC} data={"Example 3"}></CreateTile> */}
+
+        </UserContainer >
+        )
+    }
+
     return (
         <UserContainer>
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 0 }}>
                 {"Bonjour " + authData.firstname}
             </Title>
             <CreateTile data={tileNbQuestionAnswered} textColor={OFFWHITE}></CreateTile>
+            <ProgressChart
+                data={progressData}
+                width={screenWidth * 0.9}
+                height={220}
+                strokeWidth={16}
+                radius={32}
+                chartConfig={chartConfig}
+                style={{
+                    marginTop: 10,
+                    borderRadius: 16
+                }}
+                hideLegend={false}
+            >
+
+            </ProgressChart>
             {/* <CreateTile bgColor={ANALOGOUS2} data={"Example 1"}></CreateTile>
             <CreateTile bgColor={ACCENT} data={"Example 2"}></CreateTile>
             <CreateTile bgColor={TRIADIC} data={"Example 3"}></CreateTile> */}

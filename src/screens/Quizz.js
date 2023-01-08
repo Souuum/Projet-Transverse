@@ -46,7 +46,7 @@ display: flex;
 flexDirection: column;
 justifyContent: space-between;
 position: absolute;
-top : 10px;
+top : 50px;
 
 `;
 
@@ -206,6 +206,7 @@ const Quizz = ({ navigation }) => {
     const refresh = () => {
         console.log("refreshing...")
         prepare();
+        console.log("done");
     }
 
 
@@ -234,18 +235,20 @@ const Quizz = ({ navigation }) => {
             }
         }
         if (cards[swipeRef.current.state.firstCardIndex]) {
+
             send({
                 iduser: authData.id,
                 idcard: cards[swipeRef.current.state.firstCardIndex].id,
                 score: value
             });
             authData.nbQuestionAnswered[0][0].n += 1;
+
             //Animation handling
             var swipei = Math.floor(Math.random() * 4);
-
             switch (swipei) {
                 case 1:
                     swipeRef.current.swipeLeft();
+
                     break;
                 case 2:
                     swipeRef.current.swipeRight();
@@ -261,11 +264,19 @@ const Quizz = ({ navigation }) => {
 
     }
 
+    if (cards.length == 0) {
+        return (
+            <SafeContainer>
+
+                <AzeretText> Vous avez répondu à toutes les questions</AzeretText>
+
+            </SafeContainer>
+        )
+    }
+
     return (
         <SafeContainer>
-            <UserInfoContainer bgColor={PRIMARY}>
-                <FredokaText textColor={OFFWHITE}>Tu as répondu à {nbQuestionAnswered} questions</FredokaText>
-            </UserInfoContainer>
+
             <Title fontSize={"25px"} additionnalStyle={{ marginTop: 30 }}>
                 {"Quizz"}
             </Title>

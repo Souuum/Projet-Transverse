@@ -23,7 +23,7 @@ const TileText = styled.Text`
 `;
 
 
-const Tile = ({ content, children, bgColor = ANALOGOUS1, additionnalStyle, TouchEvent }) => {
+const Tile = ({ content, children, bgColor = PRIMARY, additionnalStyle, TouchEvent }) => {
   const [isActive, setIsActive] = useState(false);
   const showTileContent = () => {
     setIsActive(current => !current);
