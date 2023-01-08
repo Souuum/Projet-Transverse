@@ -23,9 +23,32 @@ const User = ({ navigation }) => {
 
     const [nbQuestionAnswered, setNbQuestionAnswered] = useState(null);
     const [tileNbQuestionAnswered, setTileNbQuestionAnswered] = useState(null);
+    const [results, setResults] = useState(null);
 
 
     useEffect(() => {
+        async function getResults() {
+            try {
+                await fetch(`http://${host}:3000/users/${authData.id}/results`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }).then((response) => response.json())
+                    .then(json => {
+                        if (json === null || typeof (json) == undefined || json.length == 0) {
+                            authData.results = null;
+                        } else {
+                            const _results = json[0];
+                            authData.results = _results;
+                            setResults(_results);
+                            console.log(_results);
+                        }
+                    })
+            } catch (e) {
+                console.warn(e);
+            }
+        }
         async function prepare() {
             try {
                 await fetch(`http://${host}:3000/users_questions_history/user/${authData.id}/count`, {
@@ -49,20 +72,20 @@ const User = ({ navigation }) => {
                                 : `${nbQuestionAnswered} questions répondues, encore ${25 - nbQuestionAnswered} pour avoir une idée de ce qui te correspond`;
                             setTileNbQuestionAnswered(s);
                         }
-
-                        if (nbQuestionAnswered > 24) {
-                            const result = "Voici votre graphe de tendance";
-                        }
                     });
             } catch (e) {
                 console.warn(e);
             }
         }
         prepare();
+        getResults();
+        const r = "Voici votre graphe de tendance";
+
 
         if (tileNbQuestionAnswered != null) {
             console.log('IM IN');
             CreateTile(tileNbQuestionAnswered);
+            CreateTile(results[0][0]);
         }
         console.log(tileNbQuestionAnswered);
         return () => {

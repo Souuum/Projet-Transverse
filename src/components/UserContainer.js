@@ -5,6 +5,8 @@ const Container = styled.SafeAreaView`
   position: relative;
   background-color: #ffffff;
   padding: 4%;
+  display :flex;
+  align-items: center;
 `;
 const UserContainer = ({ children }) => {
     return (

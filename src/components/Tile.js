@@ -30,7 +30,7 @@ const Tile = ({ content, children, bgColor = ANALOGOUS1, additionnalStyle, Touch
   }
 
   return (
-    <View style={{ height: isActive ? `75%` : `20%`, width: isActive ? `75%` : "40%", marginTop: 10 }} onTouchEnd={showTileContent}>
+    <View style={{ height: isActive ? `75%` : `20%`, width: `95%`, marginTop: 10 }} onTouchEnd={showTileContent}>
       <TileContainer bgColor={bgColor}>
         {children}
       </TileContainer>
