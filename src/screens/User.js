@@ -15,10 +15,11 @@ import Tile from "../components/Tile";
 import { host } from "../config/host";
 import { View } from "react-native";
 import { ProgressChart } from "react-native-chart-kit";
+import { useIsFocused } from "@react-navigation/native";
 
 const User = ({ navigation }) => {
     const screenWidth = Dimensions.get("window").width;
-
+    const isFocused = useIsFocused();
     const { authData, signOut } = useAuth();
     const [nbQuestionAnswered, setNbQuestionAnswered] = useState(null);
     const [tileNbQuestionAnswered, setTileNbQuestionAnswered] = useState(null);
@@ -34,7 +35,7 @@ const User = ({ navigation }) => {
         backgroundGradientFromOpacity: 1,
         backgroundGradientTo: PRIMARY,
         backgroundGradientToOpacity: 1,
-        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+        color: (opacity = 1) => `rgba(255, 199, 150, ${opacity})`,
         strokeWidth: 2, // optional, default 3
         barPercentage: 0.5,
         propsForLabels: {
@@ -65,7 +66,13 @@ const User = ({ navigation }) => {
                             console.log(_label);
                             const _progress = {
                                 labels: _label,
-                                data: _data
+                                data: _data,
+                                colors: [
+                                    "#FFC759",
+                                    "#F8B77E",
+                                    "#ECA669",
+                                    "#D8B79B"
+                                ],
                             }
                             setResults(_results);
                             setProgressData(_progress);
@@ -113,13 +120,12 @@ const User = ({ navigation }) => {
         if (tileNbQuestionAnswered != null) {
             console.log('IM IN');
             CreateTile(tileNbQuestionAnswered);
-            CreateTile(results[0][0]);
         }
         console.log(tileNbQuestionAnswered);
         return () => {
 
         }
-    }, [])
+    }, [isFocused])
 
     const CreateTile = (props) => {
         if (props == null || typeof (props) == undefined) return null
@@ -158,6 +164,7 @@ const User = ({ navigation }) => {
                 height={220}
                 strokeWidth={16}
                 radius={32}
+                withCustomBarColorFromData={true}
                 chartConfig={chartConfig}
                 style={{
                     marginTop: 10,

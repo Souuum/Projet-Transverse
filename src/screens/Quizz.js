@@ -21,6 +21,7 @@ import { COLD, GRINNING, HEARTEYES, VOMIT, PRIMARY, ANALOGOUS1, COMPLEMENTARY, A
 import RoundedBackGround from "../components/RoundedBackGround";
 import Icon from "react-native-vector-icons/Ionicons";
 import { swipedAll } from "../components/QuizzSwiper";
+import { useIsFocused } from "@react-navigation/native";
 
 
 const CardContainer = styled.View`
@@ -65,7 +66,7 @@ border-radius: 20px;
 
 
 const Quizz = ({ navigation }) => {
-
+    const isFocused = useIsFocused();
     const { authData } = useAuth();
     const [cards, setCards] = useState(null);
     const [nbQuestionAnswered, setNbQuestionAnswered] = useState(authData.nbQuestionAnswered[0][0].n);
@@ -102,7 +103,7 @@ const Quizz = ({ navigation }) => {
         return () => {
 
         }
-    }, [])
+    }, [isFocused])
 
 
     useEffect(() => {
