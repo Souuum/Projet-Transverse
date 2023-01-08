@@ -16,7 +16,7 @@ const logo = require("../../assets/logos/cyber.png");
 import series from "../data/series";
 import { LinearGradient } from "expo-linear-gradient";
 
-const CompanyScreen = () => {
+const MajeureScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -213,32 +213,12 @@ const CompanyScreen = () => {
             borderRadius: SPACING * 2,
           }}
           colors={[colors.light, colors.dark]}
-        >
-          <LinearGradient
-            style={{
-              padding: SPACING * 1.6,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: SPACING * 2,
-            }}
-            colors={[colors["dark-gray"], colors.dark]}
-          >
-            <Text
-              style={{
-                color: colors.light,
-                fontWeight: "800",
-                fontSize: SPACING * 2,
-              }}
-            >
-              View All
-            </Text>
-          </LinearGradient>
-        </LinearGradient>
+        ></LinearGradient>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export default CompanyScreen;
+export default MajeureScreen;
 
 const styles = StyleSheet.create({});
